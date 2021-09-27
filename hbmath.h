@@ -275,6 +275,7 @@ Mat4 operator-(const Mat4& operand);
 #ifdef HBMATH_IMPLEMENTATION
 
 #include <cmath>
+#include <cassert>
 
 namespace hbmath
 {
