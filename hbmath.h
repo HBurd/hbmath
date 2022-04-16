@@ -97,6 +97,10 @@ struct Vec3
     // Takes an array of three floats
     Vec3(float* data);
 
+    static Vec3 X(float x_);
+    static Vec3 Y(float y_);
+    static Vec3 Z(float z_);
+
     float* array();
     const float* array() const;
 
@@ -170,6 +174,7 @@ struct Quaternion
 
 // Vector operations
 float dot(const Vec3& lhs, const Vec3& rhs);
+Vec3 cross(const Vec3& lhs, const Vec3& rhs);
 
 Vec3 operator+(const Vec3& lhs, const Vec3& rhs);
 Vec3 operator-(const Vec3& lhs, const Vec3& rhs);
@@ -489,6 +494,21 @@ Vec3::Vec3(float* data)
     : x(data[0]), y(data[1]), z(data[2])
 {}
 
+Vec3 Vec3::X(float x_)
+{
+    return Vec3(x_, 0.0f, 0.0f);
+}
+
+Vec3 Vec3::Y(float y_)
+{
+    return Vec3(0.0f, y_, 0.0f);
+}
+
+Vec3 Vec3::Z(float z_)
+{
+    return Vec3(0.0f, 0.0f, z_);
+}
+
 float Vec3::square_magnitude() const
 {
     return x*x + y*y + z*z;
@@ -539,6 +559,13 @@ float dot(const Vec3& lhs, const Vec3& rhs)
     return lhs.x * rhs.x
          + lhs.y * rhs.y
          + lhs.z * rhs.z;
+}
+
+Vec3 cross(const Vec3& lhs, const Vec3& rhs)
+{
+    return Vec3(lhs.y * rhs.z - lhs.z * rhs.y,
+                lhs.z * rhs.x - lhs.x * rhs.z,
+                lhs.x * rhs.y - lhs.y * rhs.x);
 }
 
 Vec3 operator+(const Vec3& lhs, const Vec3& rhs)
