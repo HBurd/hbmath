@@ -3,7 +3,8 @@
 // MIT License.
 // See end of file for license text.
 
-#pragma once
+#ifndef HBMATH_INCLUDED
+#define HBMATH_INCLUDED
 
 #include <cstddef>
 
@@ -280,6 +281,8 @@ Mat4 operator-(const Mat4& lhs, const Mat4& rhs);
 Mat4 operator-(const Mat4& operand);
 
 }
+
+#endif
 
 
 #ifdef HBMATH_IMPLEMENTATION
